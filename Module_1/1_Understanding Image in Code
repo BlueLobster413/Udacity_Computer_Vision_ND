@@ -1,0 +1,16 @@
+import numpy as np
+import matplotlib.image as plotimg #For reading image
+import matplotlib.pyplot as plot # For plotting, basically plots images also
+import cv2 # Computer Vision Lib
+
+%matplotlib qt # Shows image in an interactive window showing the pixel location and intensity
+
+image = plotimg.imread('location') # Read Image, now it's an Numpy array, we can play
+print('Image size', image.size) # shows image size (row, column, color)
+
+#Convert colour image to grayscale, as it's an image related function, we use CV2 (image, conversion format)
+black_white = cv2.cvtImage(image, cv2.COLOR_RGB2GRAY)
+plot.imshow(black_white, cmap='gray')
+
+#Accessing each pixel value
+print(gray_image[y,x])
