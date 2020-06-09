@@ -30,7 +30,7 @@ class DecoderRNN(nn.Module):
     def __init__(self, embed_size, hidden_size, vocab_size, num_layers=1):
         super(DecoderRNN, self).__init__()
         
-        self.embed_size = embed_size # Defined as 256
+        self.embed_size = embed_size # Defined as 512
         self.hidden_size = hidden_size # Defined as 512
         self.vocab_size = vocab_size # For vocab_length 4, size is 9955
         self.num_layers = num_layers
@@ -59,12 +59,9 @@ class DecoderRNN(nn.Module):
         
         # Embedding the captions
         embedded = self.embed(captions[:,:-1])
-        # print(embedded.shape)
-        # print(features.unsqueeze(1).shape)
         
         # Embedding Image Features
         embedded = torch.cat((features.unsqueeze(1), embedded), dim=1)
-        #print(embedded.shape)
         
         # LSTM Cell taking embedded as input
         lstm_out, hidden_out = self.lstm(embedded, self.hidden)
